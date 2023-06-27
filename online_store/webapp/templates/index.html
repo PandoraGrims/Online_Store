@@ -15,15 +15,15 @@
                     <div class="col-xxl-4 col-lg-6 col-sm-12">
                         <div class="card card-our-works h-100" style="border: 3px solid darkblue">
                             <div class="card-body ">
-                                <p class="card-text card-text-1 text-uppercase">{{ good.title }}</p>
-                                <p class="card-text card-text-1 text-uppercase">{{ good.category.title }}</p>
-                                <p class="card-text card-text-1 text-uppercase" style="border-bottom: 2px solid darkblue">{{ good.price }}</p>
+                                <p class="card-text card-text-1 text-uppercase" style="font-size: 36px;">{{ good.title }}</p>
+                                <p class="card-text card-text-1 text-uppercase" style="font-size: 24px;">{{ good.category.title }}</p>
+                                <p class="card-text card-text-1 text-uppercase" style="font-size: 24px; border-bottom: 2px solid darkblue">{{ good.price }} $</p>
                             </div>
 
-                            <img src="{{ good.image_url }}" class="card-img-top rounded-0"
+                            <img src="{{ good.image_url }}" class="card-img-top rounded-0 pb-3"
                                  alt="{{ good.title }}" style="width: 100%; height: auto;">
 
-                            <a class="card-link pt-3 pb-3" href="{% url "good_view" good.pk %}" style="border-top: 2px solid darkblue">
+                            <a class="card-link pt-3 pb-3" href="{% url "good_view" good.pk %}" style="border-top: 2px solid darkblue;">
                             <button type="submit"
                             class="btn btm-input btn-outline-warning btn-lg py-2  text-uppercase rounded-0">Просмотр тавара</button>
                                 </a>
