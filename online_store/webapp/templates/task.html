@@ -1,0 +1,19 @@
+{% extends "base_html_my.html" %}
+{% block link %}
+    <li class="nav-item">
+          <a class="nav-link" href="{% url "task_add" %}">Создание задачи</a>
+    </li>
+{% endblock %}
+
+{% block title %}Детали{% endblock %}
+
+{% block content %}
+    <div class="card-body">
+        <p>{{ task.get_status_display }}</p>
+        <p class="card-text">{{ task.content }}</p>
+        <p class="card-text">Описание: {{ task.description }}</p>
+        <p class="card-text">Подробное описание: {{ task.detailed_description }}</p>
+        <p class="card-text">ДедЛайн: {{ task.data_field }}</p>
+
+    </div>
+{% endblock %}

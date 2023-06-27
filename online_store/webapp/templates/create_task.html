@@ -1,0 +1,39 @@
+{% extends "base_html_my.html" %}
+{% block title %}Создание задачи{% endblock %}
+<h1>Create new task</h1>
+
+{% block content %}
+<form action="/task/add/" method="post">
+    {% csrf_token %}
+    <label>Status:</label><br/>
+    <label>
+        <select name="status">
+            {% for status in status_choices %}
+                <option value="{{ status.0 }}">{{ status.1 }}</option>
+            {% endfor %}
+
+        </select>
+    </label><br/>
+    <label>Title:</label><br/>
+    <label>
+        <input type="text" name="title"/>
+    </label><br/>
+    <label>Description:</label><br/>
+    <label>
+        <textarea name="description"></textarea>
+    </label><br/>
+    <label>Detailed Description:</label><br/>
+    <label>
+        <textarea name="detailed_description"></textarea>
+    </label><br/>
+
+    <label>DeadLine:</label><br/>
+    <label>
+        <input type="date" name="data_field"/>
+    </label><br/>
+
+    <input type="submit" value="Send"/>
+
+</form>
+
+{% endblock %}

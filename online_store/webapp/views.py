@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
 
 from webapp.models import Good
 
 
 def good_list_view(request):
-    goods = Good.objects.order_by("-updated_at")
+    goods = Good.objects.order_by("-data_field")
     context = {"goods": goods}
     return render(request, "index.html", context)
 
@@ -14,16 +13,20 @@ def good_create_view(request):
     if request.method == "GET":
         return render(request, "create_good.html")
     else:
-        Good.objects.create(
+        good = Good.objects.create(
             title=request.POST.get("title"),
             description=request.POST.get("description"),
+            created_at=request.POST.get("created_at"),
+            category=request.POST.get("category"),
+            price=request.POST.get("price"),
+            image_url=request.POST.get("image_url"),
         )
-        return HttpResponseRedirect("/")
+
+    return redirect("good_view", pk=good.pk)
 
 
-def goods_view(request):
-    good_id = request.GET.get("id")
-    good = Good.objects.get(id=good_id)
+def good_view(request, *args, pk, **kwargs):
+    good = Good.objects.get(id=pk)
     return render(request, "good.html", {"good": good})
 
 
