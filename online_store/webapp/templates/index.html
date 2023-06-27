@@ -1,24 +1,24 @@
 {% extends "base_html_my.html" %}
 {% block link %}
-    <li class="nav-item">
-          <a class="nav-link" href="{% url "good_add" %}">Создание задачи</a>
-        </li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url "good_add" %}">Создание задачи</a>
+</li>
 {% endblock %}
 
 {% block content %}
 
-    <h1>GOOOOOOOOOOOOOOOOD</h1>
+<h1>GOOOOOOOOOOOOOOOOD</h1>
 
 
-    <br>
-    {% for good in goods %}
-        <div class="card text-bg-warning mb-3" style="width: 18rem;">
-            <div class="card-body">
-                <h3 class="card-status">{{ task.status }}</h3>
-                <h5 class="card-title">{{ task.title }}</h5>
-                <p class="card-text">{{ task.content }}</p>
-                <a href="{% url "good_view" task.pk %}" class="card-link">Детальный просмотр задачи</a>
-            </div>
-        </div>
-    {% endfor %}
+<br>
+{% for good in goods %}
+<div class="card text-bg-warning mb-3" style="width: 18rem;">
+    <div class="card-body">
+        <h3 class="card-title">{{ good.title }}</h3>
+        <h5 class="card-status">{{ good.category }}</h5>
+        <p class="card-text">{{ good.price }}</p>
+        <a class="card-link" href="{% url "good_view" good.pk %}">Просмотр тавара</a>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
