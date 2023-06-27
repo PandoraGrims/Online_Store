@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 
 from webapp.models import Good, Category
 
@@ -15,7 +15,6 @@ def good_create_view(request):
         return render(request, "create_good.html", {"categories": categories})
     else:
         category = get_object_or_404(Category, pk=request.POST.get("category"))
-        print(type(category))
         good = Good.objects.create(
             title=request.POST.get("title"),
             description=request.POST.get("description"),
@@ -40,11 +39,11 @@ def delete_good(request, good_id):
 
 
 def category_add_view(request):
+    if request.method == "GET":
+        return render(request, "category_add.html")
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = CategoryForm()
-
-    return render(request, 'category_add.html', {'form': form})
+        Category.objects.create(
+            title=request.POST.get('title'),
+            description=request.POST.get('description'),
+        )
+        return HttpResponseRedirect("/")
