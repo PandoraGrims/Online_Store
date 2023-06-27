@@ -1,6 +1,6 @@
 {% extends "base_html_my.html" %}
 {% block title %}Создание товара{% endblock %}
-<h1>Create new task</h1>
+<h1>Create new good</h1>
 
 {% block content %}
 <form action="/good/add/" method="post">
@@ -9,7 +9,7 @@
     <label>
         <select name="category">
             {% for category in categories %}
-                <option value="{{ category.id }}">{{ category.title }}</option>
+                <option value="{{ category.title }}">{{ category.title }}</option>
             {% endfor %}
 
         </select>
@@ -28,7 +28,7 @@
     </label><br/>
     <label>Добавить картинку:</label><br/>
     <label>
-        <input type="number" name="price">
+        <input type="url" name="image_url">
     </label><br/>
     <input type="submit" value="Send"/>
 

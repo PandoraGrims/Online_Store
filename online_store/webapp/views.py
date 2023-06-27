@@ -14,6 +14,8 @@ def good_create_view(request):
         categories = Category.objects.all()
         return render(request, "create_good.html", {"categories": categories})
     else:
+        category = request.POST.get("category")
+        print(type(category))
         good = Good.objects.create(
             title=request.POST.get("title"),
             description=request.POST.get("description"),
@@ -23,7 +25,7 @@ def good_create_view(request):
             image_url=request.POST.get("image_url"),
         )
 
-    return redirect("good_view", pk=good.pk)
+    return render(request, "index.html")
 
 
 def good_view(request, *args, pk, **kwargs):
