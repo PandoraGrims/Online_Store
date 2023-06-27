@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from webapp.models import Good
+from webapp.models import Good, Category
+
+admin.site.register(Category)
 
 
 class StoreAdmin(admin.ModelAdmin):

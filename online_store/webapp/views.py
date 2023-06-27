@@ -1,24 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from webapp.models import Good
+from webapp.models import Good, Category
 
 
 def good_list_view(request):
-    goods = Good.objects.order_by("-data_field")
+    goods = Good.objects.order_by("-created_at")
     context = {"goods": goods}
     return render(request, "index.html", context)
 
 
 def good_create_view(request):
     if request.method == "GET":
-        return render(request, "create_good.html")
+        categories = Category.objects.all()
+        return render(request, "create_good.html", {"categories": categories})
     else:
         good = Good.objects.create(
             title=request.POST.get("title"),
             description=request.POST.get("description"),
-            created_at=request.POST.get("created_at"),
             category=request.POST.get("category"),
             price=request.POST.get("price"),
+            created_at=request.POST.get("created_at"),
             image_url=request.POST.get("image_url"),
         )
 

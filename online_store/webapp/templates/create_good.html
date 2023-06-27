@@ -1,15 +1,15 @@
 {% extends "base_html_my.html" %}
-{% block title %}Создание задачи{% endblock %}
+{% block title %}Создание товара{% endblock %}
 <h1>Create new task</h1>
 
 {% block content %}
 <form action="/good/add/" method="post">
     {% csrf_token %}
-    <label>Status:</label><br/>
+    <label>Category:</label><br/>
     <label>
-        <select name="status">
-            {% for status in status_choices %}
-                <option value="{{ status.0 }}">{{ status.1 }}</option>
+        <select name="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.title }}</option>
             {% endfor %}
 
         </select>
@@ -22,16 +22,14 @@
     <label>
         <textarea name="description"></textarea>
     </label><br/>
-    <label>Detailed Description:</label><br/>
+    <label>Price:</label><br/>
     <label>
-        <textarea name="detailed_description"></textarea>
+        <input type="number" name="price">
     </label><br/>
-
-    <label>DeadLine:</label><br/>
+    <label>Добавить картинку:</label><br/>
     <label>
-        <input type="date" name="data_field"/>
+        <input type="number" name="price">
     </label><br/>
-
     <input type="submit" value="Send"/>
 
 </form>

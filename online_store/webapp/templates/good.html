@@ -1,19 +1,18 @@
 {% extends "base_html_my.html" %}
 {% block link %}
     <li class="nav-item">
-          <a class="nav-link" href="{% url "task_add" %}">Создание задачи</a>
+          <a class="nav-link" href="{% url "good_add" %}">Создать товар</a>
     </li>
 {% endblock %}
 
-{% block title %}Детали{% endblock %}
+{% block title %}Подробно о таваре{% endblock %}
 
 {% block content %}
     <div class="card-body">
-        <p>{{ task.get_status_display }}</p>
-        <p class="card-text">{{ task.content }}</p>
-        <p class="card-text">Описание: {{ task.description }}</p>
-        <p class="card-text">Подробное описание: {{ task.detailed_description }}</p>
-        <p class="card-text">ДедЛайн: {{ task.data_field }}</p>
+        <p class="card-text">{{ good.title }}</p>
+        <p class="card-text">Категория: {{ good.category.title }}</p>
+        <p class="card-text">Описание: {{ good.description }}</p>
+        <p class="card-text">Дата создания: {{ good.created_at }}</p>
 
     </div>
 {% endblock %}
