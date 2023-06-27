@@ -1,7 +1,7 @@
 {% extends "base_html_my.html" %}
 {% block link %}
 <li class="nav-item">
-    <a class="nav-link" href="{% url "good_add" %}">Создание задачи</a>
+    <a class="nav-link" href="{% url "good_add" %}">Создание товара</a>
 </li>
 {% endblock %}
 
@@ -15,8 +15,9 @@
 <div class="card text-bg-warning mb-3" style="width: 18rem;">
     <div class="card-body">
         <h3 class="card-title">{{ good.title }}</h3>
-        <h5 class="card-status">{{ good.category }}</h5>
+        <h5 class="card-status">{{ good.category.title }}</h5>
         <p class="card-text">{{ good.price }}</p>
+        <img src="https://st4.depositphotos.com/1742172/22224/v/450/depositphotos_222249842-stock-illustration-grunge-textured-illustration-cartoon-evidence.jpg" class="img-fluid" alt="cartoon-box">
         <a class="card-link" href="{% url "good_view" good.pk %}">Просмотр тавара</a>
     </div>
 </div>

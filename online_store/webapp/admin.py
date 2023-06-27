@@ -10,7 +10,7 @@ class StoreAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'title']
     list_filter = ['category']
     search_fields = ['title', 'description']
-    fields = ['title', 'category', 'description', "price", 'created_at']
+    fields = ['title', 'category', 'description', "price", 'image_url', 'created_at']
     readonly_fields = ['created_at']
 
 
