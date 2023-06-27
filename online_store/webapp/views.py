@@ -21,7 +21,7 @@ def good_create_view(request):
             category=category,
             price=request.POST.get("price"),
             created_at=request.POST.get("created_at"),
-            image_url=request.POST.get("image_url"),
+            image_url=request.POST.get("image"),
         )
 
     return redirect("good_view", pk=good.pk)
