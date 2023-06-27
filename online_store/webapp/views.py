@@ -1,35 +1,34 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 
-from webapp.models import Task
+from webapp.models import Good
 
 
-def task_list_view(request):
-    tasks = Task.objects.order_by("-updated_at")
-    context = {"tasks": tasks}
+def good_list_view(request):
+    goods = Good.objects.order_by("-updated_at")
+    context = {"goods": goods}
     return render(request, "index.html", context)
 
 
-def task_create_view(request):
+def good_create_view(request):
     if request.method == "GET":
-        return render(request, "create_task.html")
+        return render(request, "create_good.html")
     else:
-        Task.objects.create(
+        Good.objects.create(
             title=request.POST.get("title"),
             description=request.POST.get("description"),
-            author=request.POST.get("author")
         )
         return HttpResponseRedirect("/")
 
 
-def task_view(request):
-    task_id = request.GET.get("id")
-    task = Task.objects.get(id=task_id)
-    return render(request, "task.html", {"task": task})
+def goods_view(request):
+    good_id = request.GET.get("id")
+    good = Good.objects.get(id=good_id)
+    return render(request, "good.html", {"good": good})
 
 
-def delete_task(request):
-    task_id = request.GET.get("id")
-    task = Task.objects.get(Task, id=task_id)
-    task.delete()
-    return redirect('task_list')
+def delete_good(request):
+    good_id = request.GET.get("id")
+    good = Good.objects.get(id=good_id)
+    good.delete()
+    return redirect('good_list')

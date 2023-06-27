@@ -1,15 +1,15 @@
 from django.contrib import admin
 
-from webapp.models import Task
+from webapp.models import Good
 
 
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'author', 'created_at']
+class StoreAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'category', "price", 'created_at']
     list_display_links = ['id', 'title']
-    list_filter = ['author']
+    list_filter = ['category']
     search_fields = ['title', 'description']
-    fields = ['title', 'author', 'description', 'created_at', 'updated_at']
-    readonly_fields = ['created_at', 'updated_at']
+    fields = ['title', 'category', 'description', "price", 'created_at']
+    readonly_fields = ['created_at']
 
 
-admin.site.register(Task, TaskAdmin)
+admin.site.register(Good, StoreAdmin)
