@@ -1,20 +1,33 @@
 {% extends "base_html_my.html" %}
 {% block link %}
     <li class="nav-item">
-          <a class="nav-link" href="{% url "good_add" %}">Создать товар</a>
+        <a class="nav-link" href="{% url "good_add" %}">Создать товар</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "category_add" %}">Создание категории</a>
     </li>
 {% endblock %}
 
 {% block title %}Подробно о таваре{% endblock %}
-
+auth_user_groups
 {% block content %}
-    <div class="card-body">
-        <p class="card-text">{{ good.title }}</p>
-        <p class="card-text">Категория: {{ good.category.title }}</p>
-        <p class="card-text">Описание: {{ good.description }}</p>
-        <p class="card-text">Цена: {{ good.price }}</p>
-        <img src="image_url" class="img-fluid" alt="cartoon-box">
-        <p class="card-text">Дата создания: {{ good.created_at }}</p>
-
+    <div class="card mb-3 mt-5 py-2" style="max-width: 1040px; border: 3px solid darkblue">
+        <div class="row g-0 px-3">
+            <div class="col-md-4 pt-3 p">
+                <img src="{{ good.image_url }}" alt="{{ good.title }}" class="img-fluid rounded-start">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title" style="border-bottom: 2px solid darkblue">Название: {{ good.title }}</h1>
+                    <p class="card-text" style="font-size: 26px;">Категория: {{ good.category.title }}</p>
+                    <p class="card-text" style="font-size: 26px;">Описание: {{ good.description }}</p>
+                    <p class="card-text" style="font-size: 26px;">Цена: {{ good.price }} $$$</p>
+                    <p class="card-text"><small class="text-body-secondary">Дата создания: {{ good.created_at }}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 {% endblock %}
