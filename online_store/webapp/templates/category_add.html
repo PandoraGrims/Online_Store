@@ -1,23 +1,31 @@
 {% extends "base_html_my.html" %}
+{% block link %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "good_add" %}">Создание товара</a>
+    </li>
+{% endblock %}
 {% block title %}Создание категории{% endblock %}
 
-<h1>Create new category</h1>
-
 {% block content %}
-    <form action="/categories/add/" method="post">
-        {% csrf_token %}
-        <h2>Добавление категории</h2>
+    <h1 class="title_create_good pt-5 pb-4">Создать/Добавить новую категорию</h1>
+    <div class="card w-25 mb-3" style="background-color: bisque">
+        <div class="card-body">
+            <form action="/categories/add/" method="post">
+                {% csrf_token %}
+                <h2>Добавление категории</h2>
 
-        <label>Title:</label><br/>
-        <label>
-            <input type="text" name="title"/>
-        </label><br/>
+                <label>Title:</label><br/>
+                <label>
+                    <input type="text" name="title"/>
+                </label><br/>
 
-        <label>Description:</label><br/>
-        <label>
-            <textarea name="description"></textarea>
-        </label><br/>
+                <label>Description:</label><br/>
+                <label>
+                    <textarea name="description"></textarea>
+                </label><br/>
 
-        <input type="submit" value="Send"/>
-    </form>
+                <input type="submit" value="Send"/>
+            </form>
+        </div>
+    </div>
 {% endblock %}
