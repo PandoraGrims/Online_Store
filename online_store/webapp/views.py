@@ -32,6 +32,12 @@ def good_view(request, *args, pk, **kwargs):
     return render(request, "good.html", {"good": good})
 
 
+def category_view(request):
+    categories = Category.objects.order_by("-title")
+    context = {"categories": categories}
+    return render(request, "category_view.html", context)
+
+
 def delete_good(request, good_id):
     good = get_object_or_404(Good, pk=good_id)
     context = {"good": good}
