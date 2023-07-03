@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 
 
 class Category(models.Model):
@@ -19,9 +21,9 @@ class Good(models.Model):
     description = models.TextField(max_length=1000, verbose_name="Описание")
     category = models.ForeignKey("webapp.Category", on_delete=models.RESTRICT, verbose_name="Категория",
                                  related_name="categories", null=True)
-
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    remainder = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[MinValueValidator(Decimal('0.00'))])
     image_url = models.URLField(null=True, blank=True, max_length=500)
 
     def __str__(self):
