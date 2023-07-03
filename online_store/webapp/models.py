@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from decimal import Decimal
 
 
@@ -23,7 +23,8 @@ class Good(models.Model):
                                  related_name="categories", null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     remainder = models.IntegerField(default=0, validators=[MinValueValidator(0)])
-    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[MinValueValidator(Decimal('0.00'))])
+    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[MinValueValidator(Decimal('0.00')),
+                                                                            MaxValueValidator(Decimal('7777777.99'))])
     image_url = models.URLField(null=True, blank=True, max_length=500)
 
     def __str__(self):
