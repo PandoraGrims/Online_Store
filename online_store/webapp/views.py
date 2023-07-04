@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 
 from webapp.models import Good, Category
 
-from webapp.form import GoodForm, CategoryForm
+from webapp.form import GoodForm
 
 
 def good_list_view(request):
@@ -41,6 +41,7 @@ def good_create_view(request):
                                        category=form.cleaned_data.get('category'),
                                        description=form.cleaned_data.get('description'),
                                        price=form.cleaned_data.get('price'),
+                                       remainder=form.cleaned_data.get('remainder'),
                                        image_url=form.cleaned_data.get('image_url'),
                                        )
             return redirect("index")
