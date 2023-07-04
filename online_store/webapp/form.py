@@ -9,5 +9,7 @@ class Category(forms.Form):
 class GoodForm(forms.Form):
     title = forms.CharField(max_length=50, required=True, label="Название")
     description = forms.CharField(max_length=100, required=True, label="Описание")
-    category = forms.ForeignKey("webapp.Category", on_delete=forms.RESTRICT, verbose_name="Категория",
-                                related_name="categories", null=True)
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label="(Nothing)")
+    remainder = forms.IntegerField(required=True, label="Остаток товара")
+    price = forms.DecimalField(required=True, label="Цена")
+    image_url = forms.URLField(max_length=300, required=True, label="URL Картинки")

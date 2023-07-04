@@ -26,6 +26,27 @@ def good_create_view(request):
 
     return redirect("good_view", pk=good.pk)
 
+def good_create_view(request):
+    if request.method == "GET":
+        form = GoodForm()
+        return render(request, "create_good.html", {"form": form})
+    else:
+        form = GoodForm(data=request.POST)
+        if form.is_valid():
+            good = Good.objects.create(author=form.cleaned_data.get('author'),
+                                       email=form.cleaned_data.get('email'),
+                                       description=form.cleaned_data.get('description'))
+            return redirect("good")
+        else:
+            return render(request, "create_good.html", {"form": form})
+
+
+
+
+
+
+
+
 
 def good_view(request, *args, pk, **kwargs):
     good = get_object_or_404(Good, id=pk)
