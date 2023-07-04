@@ -1,7 +1,9 @@
 from django import forms
 
+from webapp.models import Category
 
-class Category(forms.Form):
+
+class CategoryForm(forms.Form):
     title = forms.CharField(max_length=50, required=True, label="Название")
     description = forms.CharField(max_length=100, required=True, label="Описание")
 

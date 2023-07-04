@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRe
 
 from webapp.models import Good, Category
 
+from webapp.form import GoodForm, CategoryForm
+
 
 def good_list_view(request):
     goods = Good.objects.order_by("-created_at")
@@ -9,43 +11,41 @@ def good_list_view(request):
     return render(request, "index.html", context)
 
 
+# def good_create_view(request):
+#     if request.method == "GET":
+#         categories = Category.objects.all()
+#         return render(request, "create_good.html", {"categories": categories})
+#     else:
+#         category = get_object_or_404(Category, pk=request.POST.get("category"))
+#         good = Good.objects.create(
+#             title=request.POST.get("title"),
+#             description=request.POST.get("description"),
+#             category=category,
+#             price=request.POST.get("price"),
+#             created_at=request.POST.get("created_at"),
+#             image_url=request.POST.get("image_url"),
+#         )
+#
+#     return redirect("good_view", pk=good.pk)
+
+
 def good_create_view(request):
     if request.method == "GET":
         categories = Category.objects.all()
-        return render(request, "create_good.html", {"categories": categories})
-    else:
-        category = get_object_or_404(Category, pk=request.POST.get("category"))
-        good = Good.objects.create(
-            title=request.POST.get("title"),
-            description=request.POST.get("description"),
-            category=category,
-            price=request.POST.get("price"),
-            created_at=request.POST.get("created_at"),
-            image_url=request.POST.get("image_url"),
-        )
-
-    return redirect("good_view", pk=good.pk)
-
-def good_create_view(request):
-    if request.method == "GET":
         form = GoodForm()
-        return render(request, "create_good.html", {"form": form})
+        return render(request, "create_good.html", {"categories": categories, "form": form})
     else:
         form = GoodForm(data=request.POST)
         if form.is_valid():
-            good = Good.objects.create(author=form.cleaned_data.get('author'),
-                                       email=form.cleaned_data.get('email'),
-                                       description=form.cleaned_data.get('description'))
-            return redirect("good")
+            good = Good.objects.create(title=form.cleaned_data.get('title'),
+                                       category=form.cleaned_data.get('category'),
+                                       description=form.cleaned_data.get('description'),
+                                       price=form.cleaned_data.get('price'),
+                                       image_url=form.cleaned_data.get('image_url'),
+                                       )
+            return redirect("index")
         else:
             return render(request, "create_good.html", {"form": form})
-
-
-
-
-
-
-
 
 
 def good_view(request, *args, pk, **kwargs):
