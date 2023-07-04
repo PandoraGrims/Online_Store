@@ -24,7 +24,7 @@ class Good(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     remainder = models.IntegerField(default=0, validators=[MinValueValidator(0)])
     price = models.DecimalField(max_digits=7, decimal_places=2, validators=[MinValueValidator(Decimal('0.00')),
-                                                                            MaxValueValidator(Decimal('7777777.99'))])
+                                                                            MaxValueValidator(Decimal('99999.99'))])
     image_url = models.URLField(null=True, blank=True, max_length=500)
 
     def __str__(self):

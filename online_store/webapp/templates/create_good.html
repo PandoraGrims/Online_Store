@@ -31,7 +31,7 @@
                 </label><br/>
                 <label>Price:</label><br/>
                 <label>
-                    <input type="number" name="price">
+                    <input type="number" name="price" value="{{ product.price|floatformat:2 }}">
                 </label><br/>
                 <label>Добавить картинку(url):</label><br/>
                 <label>
@@ -46,3 +46,6 @@
 
 
 {% endblock %}
+
+
+{#<input type="number" name="price" value="{{ product.price|floatformat:2 }}">#}
