@@ -7,7 +7,8 @@ from webapp.form import GoodForm
 
 def good_list_view(request):
     goods = Good.objects.order_by("-created_at")
-    context = {"goods": goods}
+    form = GoodForm()
+    context = {"goods": goods, "form": form}
     return render(request, "index.html", context)
 
 
